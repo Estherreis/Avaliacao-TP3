@@ -1,0 +1,31 @@
+﻿@page
+@model AvaliacaoA1.Pages.Recompensa.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Recompensa</h4>
+    <hr />
+    <dl class="row">
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Recompensa.Nome)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Recompensa.Descricao)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Recompensa.CustoEmPontos)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Recompensa.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

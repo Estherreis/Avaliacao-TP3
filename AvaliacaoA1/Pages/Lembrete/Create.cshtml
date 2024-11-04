@@ -1,0 +1,50 @@
+﻿@page
+@model AvaliacaoA1.Pages.Lembrete.CreateModel
+
+@{
+    ViewData["Title"] = "Criar Lembrete";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Criar Lembrete</h1>
+
+    <div class="card shadow p-4">
+        <h4 class="font-weight-bold text-primary mb-3">Detalhes do Lembrete</h4>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <!-- Campo Data e Hora -->
+            <div class="form-floating mb-3">
+                <input asp-for="Lembrete.DataHora" type="datetime-local" class="form-control border-0 shadow-sm" placeholder="Data e Hora" />
+                <label asp-for="Lembrete.DataHora" class="form-label font-weight-bold">Data e Hora</label>
+                <span asp-validation-for="Lembrete.DataHora" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Mensagem -->
+            <div class="form-floating mb-3">
+                <input asp-for="Lembrete.Mensagem" class="form-control border-0 shadow-sm" placeholder="Mensagem" />
+                <label asp-for="Lembrete.Mensagem" class="form-label font-weight-bold">Mensagem</label>
+                <span asp-validation-for="Lembrete.Mensagem" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Seleção de Membro -->
+            <div class="mb-3">
+                <label asp-for="Lembrete.MembroId" class="form-label font-weight-bold">Selecionar Membro</label>
+                <select asp-for="Lembrete.MembroId" class="form-control" asp-items="Model.Membros"></select>
+                <span asp-validation-for="Lembrete.MembroId" class="text-danger"></span>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="d-flex justify-content-end">
+                <a asp-page="./Index" class="btn btn-outline-secondary btn-lg shadow-sm me-3">Voltar à Lista</a>
+                <input type="submit" value="Criar" class="btn btn-primary btn-lg shadow-sm" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

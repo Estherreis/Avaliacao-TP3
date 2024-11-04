@@ -1,0 +1,23 @@
+﻿@page
+@model AvaliacaoA1.Pages.Recompensa.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalhes da Recompensa";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Detalhes da Recompensa</h1>
+
+    <div class="card shadow p-4">
+        <h4 class="font-weight-bold text-primary mb-3">Informações da Recompensa</h4>
+        <dl class="row">
+            <dd class="col-sm-9">@Model.Recompensa.Nome</dd>
+            <dd class="col-sm-9">@Model.Recompensa.Descricao</dd>
+            <dd class="col-sm-9">@Model.Recompensa.CustoEmPontos</dd>
+        </dl>
+
+        <div class="d-flex justify-content-end">
+            <a asp-page="./Index" class="btn btn-outline-secondary btn-lg shadow-sm">Voltar à Lista</a>
+        </div>
+    </div>
+</div>

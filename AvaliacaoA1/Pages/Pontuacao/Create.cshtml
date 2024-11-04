@@ -1,0 +1,56 @@
+﻿@page
+@model AvaliacaoA1.Pages.Pontuacao.CreateModel
+
+@{
+    ViewData["Title"] = "Criar Pontuação";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Criar Pontuação</h1>
+
+    <div class="card shadow p-4">
+        <h4 class="font-weight-bold text-primary mb-3">Detalhes da Pontuação</h4>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <!-- Campo Pontos -->
+            <div class="form-floating mb-3">
+                <input asp-for="Pontuacao.Pontos" class="form-control border-0 shadow-sm" placeholder="Pontos" />
+                <label asp-for="Pontuacao.Pontos" class="form-label font-weight-bold">Pontos</label>
+                <span asp-validation-for="Pontuacao.Pontos" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Descrição -->
+            <div class="form-floating mb-3">
+                <input asp-for="Pontuacao.Descricao" class="form-control border-0 shadow-sm" placeholder="Descrição" />
+                <label asp-for="Pontuacao.Descricao" class="form-label font-weight-bold">Descrição</label>
+                <span asp-validation-for="Pontuacao.Descricao" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Seleção de Tarefa -->
+            <div class="mb-3">
+                <label asp-for="Pontuacao.TarefaId" class="form-label font-weight-bold">Selecionar Tarefa</label>
+                <select asp-for="Pontuacao.TarefaId" class="form-control">
+                    <option value="">Selecione uma Tarefa</option>
+                    @foreach (var tarefa in ViewBag.TarefaId as SelectList)
+                    {
+                        <option value="@tarefa.Value">@tarefa.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Pontuacao.TarefaId" class="text-danger"></span>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="d-flex justify-content-end">
+                <a asp-page="./Index" class="btn btn-outline-secondary btn-lg shadow-sm me-3">Voltar à Lista</a>
+                <input type="submit" value="Criar" class="btn btn-primary btn-lg shadow-sm" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

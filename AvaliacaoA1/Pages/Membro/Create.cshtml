@@ -1,0 +1,43 @@
+﻿@page
+@model AvaliacaoA1.Pages.Membro.CreateModel
+
+@{
+    ViewData["Title"] = "Criar Membro";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Criar Membro</h1>
+
+    <div class="card shadow p-4">
+        <h4 class="font-weight-bold text-primary mb-3">Detalhes do Membro</h4>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <!-- Campo Nome -->
+            <div class="form-floating mb-3">
+                <input asp-for="Membro.Nome" class="form-control border-0 shadow-sm" placeholder="Nome" />
+                <label asp-for="Membro.Nome" class="form-label font-weight-bold">Nome</label>
+                <span asp-validation-for="Membro.Nome" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Email -->
+            <div class="form-floating mb-3">
+                <input asp-for="Membro.Email" type="email" class="form-control border-0 shadow-sm" placeholder="Email" />
+                <label asp-for="Membro.Email" class="form-label font-weight-bold">Email</label>
+                <span asp-validation-for="Membro.Email" class="text-danger"></span>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="d-flex justify-content-end">
+                <a asp-page="./Index" class="btn btn-outline-secondary btn-lg shadow-sm me-3">Voltar à Lista</a>
+                <input type="submit" value="Criar" class="btn btn-primary btn-lg shadow-sm" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

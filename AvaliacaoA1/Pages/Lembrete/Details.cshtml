@@ -1,0 +1,23 @@
+﻿@page
+@model AvaliacaoA1.Pages.Lembrete.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalhes do Lembrete";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Detalhes do Lembrete</h1>
+
+    <div class="card shadow p-4">
+        <h4 class="font-weight-bold text-primary mb-3">Informações do Lembrete</h4>
+        <dl class="row">
+            <dd class="col-sm-9">@Model.Lembrete.DataHora</dd>
+            <dd class="col-sm-9">@Model.Lembrete.Mensagem</dd>
+            <dd class="col-sm-9">@Model.Lembrete.Membro?.Email</dd>
+        </dl>
+
+        <div class="d-flex justify-content-end">
+            <a asp-page="./Index" class="btn btn-outline-secondary btn-lg shadow-sm">Voltar à Lista</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿@page
+@model AvaliacaoA1.Pages.Reuniao.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalhes da Reunião";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Detalhes da Reunião</h1>
+
+    <div class="card shadow p-4">
+        <dl class="row justify-content-center">
+            <dd class="col-sm-9">@Model.Reuniao.DataHora</dd>
+            <dd class="col-sm-9">@Model.Reuniao.Titulo</dd>
+            <dd class="col-sm-9">@Model.Reuniao.Notas</dd>
+            <dd class="col-sm-9">
+                <ul>
+                    @foreach (var membroReuniao in Model.Reuniao.MembroReunioes)
+                    {
+                        <li>@membroReuniao.Membro.Nome</li>
+                    }
+                </ul>
+            </dd>
+        </dl>
+
+        <div class="d-flex justify-content-end">
+            <a asp-page="./Index" class="btn btn-outline-secondary btn-lg">Voltar</a>
+        </div>
+    </div>
+</div>

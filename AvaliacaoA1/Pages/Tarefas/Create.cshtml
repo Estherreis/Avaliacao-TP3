@@ -1,0 +1,62 @@
+﻿@page
+@model AvaliacaoA1.Pages.Tarefas.CreateModel
+
+@{
+    ViewData["Title"] = "Tarefas";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Tarefas</h1>
+
+    <div class="card shadow p-4">
+        <h4 class="font-weight-bold text-primary mb-3">Adicionar Nova Tarefa</h4>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <!-- Linha de campos lado a lado -->
+            <div class="row">
+                <div class="form-floating col-md-6 mb-3">
+                    <input asp-for="Tarefa.Nome" class="form-control border-0 shadow-sm" placeholder="Nome" />
+                    <label asp-for="Tarefa.Nome" class="form-label font-weight-bold">Nome</label>
+                    <span asp-validation-for="Tarefa.Nome" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-md-6 mb-3">
+                    <input asp-for="Tarefa.Descricao" class="form-control border-0 shadow-sm" placeholder="Descrição" />
+                    <label asp-for="Tarefa.Descricao" class="form-label font-weight-bold">Descrição</label>
+                    <span asp-validation-for="Tarefa.Descricao" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Outra linha de campos lado a lado -->
+            <div class="row">
+                <div class="form-floating col-md-6 mb-3">
+                    <input asp-for="Tarefa.DataCriacao" type="datetime-local" class="form-control border-0 shadow-sm" placeholder="Data de Criação" />
+                    <label asp-for="Tarefa.DataCriacao" class="form-label font-weight-bold">Data de Criação</label>
+                    <span asp-validation-for="Tarefa.DataCriacao" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-md-6 mb-3">
+                    <input asp-for="Tarefa.DataConclusao" type="datetime-local" class="form-control border-0 shadow-sm" placeholder="Data de Conclusão" />
+                    <label asp-for="Tarefa.DataConclusao" class="form-label font-weight-bold">Data de Conclusão</label>
+                    <span asp-validation-for="Tarefa.DataConclusao" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group form-check mb-3">
+                <input class="form-check-input" asp-for="Tarefa.Concluida" />
+                <label asp-for="Tarefa.Concluida" class="form-check-label font-weight-bold ml-2">Concluída</label>
+            </div>
+
+            <!-- Botões alinhados à direita com espaçamento -->
+            <div class="d-flex justify-content-end">
+                <a asp-page="Index" class="btn btn-outline-secondary btn-lg shadow-sm me-3">Voltar à Lista</a>
+                <input type="submit" value="Criar Tarefa" class="btn btn-primary btn-lg shadow-sm" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

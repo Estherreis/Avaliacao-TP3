@@ -1,0 +1,70 @@
+﻿@page
+@model AvaliacaoA1.Pages.Reuniao.EditModel
+
+@{
+    ViewData["Title"] = "Editar Reunião";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Editar Reunião</h1>
+
+    <div class="card shadow p-4">
+        <h4 class="font-weight-bold text-primary mb-3">Detalhes da Reunião</h4>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <input type="hidden" asp-for="Reuniao.Id" />
+
+            <!-- Campo Data e Hora -->
+            <div class="form-floating mb-3">
+                <input asp-for="Reuniao.DataHora" type="datetime-local" class="form-control border-0 shadow-sm" placeholder="Data e Hora" />
+                <label asp-for="Reuniao.DataHora" class="form-label font-weight-bold">Data e Hora</label>
+                <span asp-validation-for="Reuniao.DataHora" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Título -->
+            <div class="form-floating mb-3">
+                <input asp-for="Reuniao.Titulo" class="form-control border-0 shadow-sm" placeholder="Título" />
+                <label asp-for="Reuniao.Titulo" class="form-label font-weight-bold">Título</label>
+                <span asp-validation-for="Reuniao.Titulo" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Notas -->
+            <div class="form-floating mb-3">
+                <textarea asp-for="Reuniao.Notas" class="form-control border-0 shadow-sm" placeholder="Notas" style="height: 100px;"></textarea>
+                <label asp-for="Reuniao.Notas" class="form-label font-weight-bold">Notas</label>
+                <span asp-validation-for="Reuniao.Notas" class="text-danger"></span>
+            </div>
+
+            <!-- Multi-Select para Membros -->
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Selecionar Membros</label>
+                <select asp-for="SelectedMembros" class="form-control select2" multiple>
+                    @foreach (var membro in Model.Membros)
+                    {
+                        var isSelected = Model.SelectedMembros.Contains(int.Parse(membro.Value)) ? "selected" : "";
+                        <option value="@membro.Value" isSelected>@membro.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="SelectedMembros" class="text-danger"></span>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="d-flex justify-content-end">
+                <a asp-page="./Index" class="btn btn-outline-secondary btn-lg shadow-sm me-3">Voltar à Lista</a>
+                <input type="submit" value="Salvar" class="btn btn-primary btn-lg shadow-sm" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Inicializa o Select2 para o multi-select
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: "Selecione membros",
+                allowClear: true
+            });
+        });
+    </script>
+}
