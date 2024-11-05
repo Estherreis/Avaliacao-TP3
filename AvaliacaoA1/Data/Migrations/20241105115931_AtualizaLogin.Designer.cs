@@ -4,6 +4,7 @@ using AvaliacaoA1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AvaliacaoA1.Data.Migrations
 {
     [DbContext(typeof(AvaliacaoA1Context))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241105115931_AtualizaLogin")]
+    partial class AtualizaLogin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

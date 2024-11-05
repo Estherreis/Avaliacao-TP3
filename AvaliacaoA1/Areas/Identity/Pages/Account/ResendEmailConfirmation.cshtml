@@ -1,0 +1,33 @@
+﻿@page
+@model ResendEmailConfirmationModel
+@{
+    ViewData["Title"] = "Reenviar Confirmação de Email";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card shadow p-4">
+                <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+                <p class="text-center">Digite seu email para reenviar a confirmação.</p>
+                <form method="post">
+                    <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+
+                    <!-- Campo Email -->
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control border-0 shadow-sm" aria-required="true" placeholder="nome@exemplo.com" />
+                        <label asp-for="Input.Email" class="form-label">Email</label>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Botão Reenviar -->
+                    <button type="submit" class="btn btn-primary w-100 btn-lg shadow-sm">Reenviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
