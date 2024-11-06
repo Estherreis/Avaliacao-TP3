@@ -51,30 +51,6 @@
                 </form>
             </div>
 
-            <!-- Login com Outros Serviços -->
-            <div class="card shadow p-4 mt-4">
-                <h3 class="text-center mb-4">Use outro serviço para entrar</h3>
-                @{
-                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                    {
-                        <div class="alert alert-info">
-                            <p class="mb-0">
-                                Não há serviços de autenticação externa configurados. Veja este <a href="https://go.microsoft.com/fwlink/?LinkID=532715" target="_blank">artigo</a>
-                                para configurar o suporte ao login por serviços externos.
-                            </p>
-                        </div>
-                    }
-                    else
-                    {
-                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="d-flex flex-column align-items-center">
-                            @foreach (var provider in Model.ExternalLogins!)
-                            {
-                                <button type="submit" class="btn btn-outline-primary w-100 mb-2" name="provider" value="@provider.Name" title="Entrar com sua conta @provider.DisplayName">@provider.DisplayName</button>
-                            }
-                        </form>
-                    }
-                }
-            </div>
         </div>
     </div>
 </div>

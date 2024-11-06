@@ -1,30 +1,18 @@
-using AvaliacaoA1.Data;
-using AvaliacaoA1.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using WebPWrecover.Services;
+using WebPWrecover.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<AvaliacaoA1Context>(options =>
-    options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<AvaliacaoA1Context>();
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<AvaliacaoA1Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AvaliacaoA1Context") ?? throw new InvalidOperationException("Connection string 'AvaliacaoA1Context' not found.")));
-builder.Services.AddDbContext<AvaliacaoA1Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AvaliacaoA1DbContext") ?? throw new InvalidOperationException("Connection string 'AvaliacaoA1Context' not found.")));
-
-builder.Services.AddTransient<IEmailSender, EmailSender>();
-builder.Services.Configure<AuthMessageSenderOptions>(
-    builder.Configuration.GetSection("AuthMessageSenderOptions"));
 
 var app = builder.Build();
 
